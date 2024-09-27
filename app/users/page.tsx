@@ -3,15 +3,15 @@
 import React from "react";
 // import Profile from "./profile";
 // import Register from "./register";
-// import Login from "./login";
-import ChangePassword from "./change-password";
+import Login from "./login";
+// import ChangePassword from "./change-password";
 
 function page() {
   return (
     <div>
-      <ChangePassword></ChangePassword>
+      {/* <ChangePassword></ChangePassword> */}
       {/* <Register></Register> */}
-      {/* <Login></Login> */}
+      <Login></Login>
     </div>
   );
 }

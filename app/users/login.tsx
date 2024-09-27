@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -119,6 +120,11 @@ const Login = () => {
     setSnackbarOpen(false);
   };
 
+  // Navigate to the "Change Password" page
+  const handleForgotPassword = () => {
+    router.push("/change-password");
+  };
+
   return (
     <div className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-md">
       <Typography variant="h4" gutterBottom>
@@ -162,7 +168,17 @@ const Login = () => {
           ),
         }}
       />
+      <Typography
+        variant="body2"
+        color="primary"
+        align="right"
+        sx={{ mt: 2, cursor: "pointer" }}
+        onClick={handleForgotPassword} // Trigger navigation to change password page
+      >
+        Forgot Password?
+      </Typography>
 
+      {/* Login Button */}
       <Button
         variant="contained"
         color="primary"
@@ -172,6 +188,8 @@ const Login = () => {
       >
         Login
       </Button>
+
+      {/* Forgot Password Link */}
 
       {/* Snackbar for error or success message */}
       <Snackbar
