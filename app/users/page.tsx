@@ -12,6 +12,7 @@ function page() {
       {/* <ChangePassword></ChangePassword> */}
       {/* <Register></Register> */}
       <Login></Login>
+      {/* <Profile></Profile> */}
     </div>
   );
 }

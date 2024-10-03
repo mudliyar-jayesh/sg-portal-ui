@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -126,68 +125,97 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-md">
-      <Typography variant="h4" gutterBottom>
-        Login
-      </Typography>
+    <div className=" min-h-screen flex justify-center items-center bg-gray-100 p-[8.5px] md:p-0 overflow-hidden">
+      <div className="max-w-lg md:w-11/12 mx-auto scroll-m-0 justify-center items-center drop-shadow-lg  p-4 bg-white rounded-xl hover:-translate-y-1 duration-200 hover:rounded-3xl hover:drop-shadow-2xl">
+        <Typography
+          variant="h4"
+          className="font-medium mt-3 flex justify-center "
+          gutterBottom
+        >
+          Login
+        </Typography>
 
-      {/* Email Field */}
-      <TextField
-        label="Email"
-        name="email"
-        fullWidth
-        onChange={handleChange}
-        value={formData.email}
-        margin="normal"
-        error={!!formErrors.email}
-        helperText={formErrors.email}
-      />
+        {/* Email Field */}
+        <TextField
+          label="Email"
+          name="email"
+          fullWidth
+          onChange={handleChange}
+          value={formData.email}
+          margin="normal"
+          error={!!formErrors.email}
+          helperText={formErrors.email}
+        />
 
-      {/* Password Field with Toggle */}
-      <TextField
-        label="Password"
-        name="password"
-        type={showPassword ? "text" : "password"} // Toggle between text and password
-        fullWidth
-        onChange={handleChange}
-        value={formData.password}
-        margin="normal"
-        error={!!formErrors.password}
-        helperText={formErrors.password}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-                edge="end"
-              >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
-      <Typography
-        variant="body2"
-        color="primary"
-        align="right"
-        sx={{ mt: 2, cursor: "pointer" }}
-        onClick={handleForgotPassword} // Trigger navigation to change password page
-      >
-        Forgot Password?
-      </Typography>
+        {/* Password Field with Toggle */}
+        <TextField
+          label="Password"
+          name="password"
+          type={showPassword ? "text" : "password"} // Toggle between text and password
+          fullWidth
+          onChange={handleChange}
+          value={formData.password}
+          margin="normal"
+          error={!!formErrors.password}
+          helperText={formErrors.password}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+        <Typography
+          variant="body2"
+          color="primary"
+          align="right"
+          sx={{ mt: 2, cursor: "pointer" }}
+          onClick={handleForgotPassword} // Trigger navigation to change password page
+        >
+          Forgot Password?
+        </Typography>
 
-      {/* Login Button */}
-      <Button
-        variant="contained"
-        color="primary"
-        fullWidth
-        onClick={handleSubmit}
-        sx={{ mt: 2 }}
-      >
-        Login
-      </Button>
+        {/* Login Button */}
+        <div className="justify-center flex">
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={handleSubmit}
+            sx={{
+              mt: 2,
+              mb: 2,
+              padding: {
+                xs: "8px 12px",
+                sm: "10px 16px",
+              },
+              width: { xs: "90%", md: "100%" },
+              borderRadius: "12px",
+              backgroundColor: "primary.main",
+              color: "white",
+              fontWeight: "1rem",
+              fontSize: "1rem",
+              boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+              transition: "all 0.3s ease-in-out",
+              "&:hover": {
+                boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.2)",
+                backgroundColor: "primary.dark",
+                transform: "translateY(-2px)",
+              },
+              textTransform: "capitalize",
+            }}
+          >
+            Login
+          </Button>
+        </div>
+      </div>
 
       {/* Forgot Password Link */}
 
@@ -196,12 +224,32 @@ const Login = () => {
         open={snackbarOpen}
         autoHideDuration={4000}
         onClose={handleCloseSnackbar}
+        sx={{
+          "& .MuiSnackbarContent-root": {
+            backgroundColor: error ? "error.main" : "success.main",
+            borderRadius: "10px",
+            boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+            padding: "12px 16px",
+            fontSize: "1rem",
+            color: "white",
+            transition: "all 0.3s ease-in-out",
+          },
+          "& .MuiAlert-root": {
+            borderRadius: "10px",
+          },
+        }}
       >
         {error ? (
           <Alert
             onClose={handleCloseSnackbar}
             severity="error"
-            sx={{ width: "100%" }}
+            sx={{
+              width: "100%",
+              fontSize: "1rem",
+              fontWeight: "bold",
+              padding: "10px 16px",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Adding shadow
+            }}
           >
             {error || formErrors.email || formErrors.password}
           </Alert>
@@ -209,7 +257,13 @@ const Login = () => {
           <Alert
             onClose={handleCloseSnackbar}
             severity="success"
-            sx={{ width: "100%" }}
+            sx={{
+              width: "100%",
+              fontSize: "1rem",
+              fontWeight: "bold",
+              padding: "10px 16px",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Adding shadow
+            }}
           >
             {successMessage}
           </Alert>

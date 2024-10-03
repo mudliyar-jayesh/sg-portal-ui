@@ -70,12 +70,12 @@ const Profile = () => {
         Profile
       </Typography>
       {profile ? (
-        <>
+        <Box>
           <Typography>Email: {profile.email}</Typography>
           <Typography>Name: {profile.name}</Typography>
           <Typography>Mobile Number: {profile.mobile_number}</Typography>
           <Typography>User Type: {profile.type}</Typography>
-        </>
+        </Box>
       ) : (
         <Typography color="error">No profile data available.</Typography>
       )}
