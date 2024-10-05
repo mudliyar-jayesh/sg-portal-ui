@@ -8,8 +8,16 @@ import {
   Snackbar,
   Alert,
   CircularProgress,
+  Stack,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
 import { IPasswordChange, changePassword } from "../api/users";
+import { inspiredPalette } from "../ui/theme";
+import EmailIcon from "@mui/icons-material/Email";
+// import KeyIcon from "@mui/icons-material/Key";
+// import LockIcon from "@mui/icons-material/Lock";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 // Utility function to encode the password in base64
 const encodeBase64 = (input: string) => {
@@ -40,6 +48,7 @@ const ChangePassword = () => {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   // Utility function to validate email format
   const validateEmail = (email: string): boolean => {
@@ -126,59 +135,109 @@ const ChangePassword = () => {
   const handleCloseSnackbar = () => {
     setSnackbarOpen(false);
   };
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
 
   return (
-    <div className=" min-h-screen flex justify-center items-center bg-gray-100 p-[8.5px] md:p-0 overflow-hidden">
-      <div className="max-w-lg md:w-11/12 mx-auto scroll-m-0 justify-center items-center drop-shadow-lg  p-4 bg-white rounded-xl hover:-translate-y-1 duration-200 hover:rounded-3xl hover:drop-shadow-2xl">
-        <Typography
-          variant="h4"
-          className="font-medium mt-3 flex justify-center "
-          gutterBottom
-        >
-          Change Password
-        </Typography>
+    <div className=" min-h-screen flex justify-center pl-4 pr-4 pb-5 items-center bg-gradient-to-t from-white to-[#9dcce0] p-[8.5px] md:p-0 overflow-hidden">
+      <div className="max-w-lg md:w-10/12 mx-auto scroll-m-0 justify-center items-center drop-shadow-lg pb-6 pr-6 pl-6 bg-gradient-to-t from-white to-[#c2eff5] rounded-xl hover:-translate-y-1 duration-200 hover:rounded-3xl hover:drop-shadow-2xl">
+        <Stack alignItems={"center"} gap={0.2} mt={1}>
+          <Typography
+            sx={{
+              fontSize: { xs: "1.5rem", sm: "1.7rem" },
+              fontWeight: 405,
+              marginBottom: 1.5,
+              marginTop: 5,
+            }}
+            color={inspiredPalette.darker}
+          >
+            Change Password
+          </Typography>
+        </Stack>
 
         {/* Email Field */}
-        <TextField
-          label="Email"
-          name="email_id"
-          type="email"
-          fullWidth
-          onChange={handleChange}
-          value={formData.email_id}
-          margin="normal"
-          error={!!formErrors.email_id}
-          helperText={formErrors.email_id}
-          disabled={loading}
-        />
+        <div className="pl-5 pr-5 md:pl-10 md:pr-10">
+          <TextField
+            label="Email"
+            name="email_id"
+            type="email"
+            fullWidth
+            onChange={handleChange}
+            value={formData.email_id}
+            margin="normal"
+            error={!!formErrors.email_id}
+            helperText={formErrors.email_id}
+            disabled={loading}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                borderRadius: "18px",
+              },
+            }}
+            slotProps={{
+              input: {
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EmailIcon aria-label="email or mobile icon" />
+                  </InputAdornment>
+                ),
+              },
+            }}
+          />
 
-        {/* Old Password Field */}
-        <TextField
-          label="Old Password"
-          name="old_password"
-          type="password"
-          fullWidth
-          onChange={handleChange}
-          value={formData.old_password}
-          margin="normal"
-          error={!!formErrors.old_password}
-          helperText={formErrors.old_password}
-          disabled={loading}
-        />
+          {/* Old Password Field */}
+          <TextField
+            label="Old Password"
+            name="old_password"
+            type={showPassword ? "text" : "password"}
+            fullWidth
+            onChange={handleChange}
+            value={formData.old_password}
+            margin="normal"
+            error={!!formErrors.old_password}
+            helperText={formErrors.old_password}
+            disabled={loading}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                borderRadius: "18px",
+              },
+            }}
+          />
 
-        {/* New Password Field */}
-        <TextField
-          label="New Password"
-          name="new_password"
-          type="password"
-          fullWidth
-          onChange={handleChange}
-          value={formData.new_password}
-          margin="normal"
-          error={!!formErrors.new_password}
-          helperText={formErrors.new_password}
-          disabled={loading}
-        />
+          {/* New Password Field */}
+          <TextField
+            label="New Password"
+            name="new_password"
+            type={showPassword ? "text" : "password"}
+            fullWidth
+            onChange={handleChange}
+            value={formData.new_password}
+            margin="normal"
+            error={!!formErrors.new_password}
+            helperText={formErrors.new_password}
+            disabled={loading}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                borderRadius: "18px",
+              },
+            }}
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={togglePasswordVisibility}
+                      aria-label="toggle password visibility"
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              },
+            }}
+          />
+        </div>
         <div className="justify-center flex">
           <Button
             variant="contained"
@@ -193,9 +252,10 @@ const ChangePassword = () => {
                 xs: "8px 12px",
                 sm: "10px 16px",
               },
-              width: { xs: "90%", md: "100%" },
+              width: { xs: "70%", md: "80%" },
               borderRadius: "12px",
-              backgroundColor: "primary.main",
+              backgroundImage:
+                "linear-gradient(90deg, #42A5F5 0%, #1E88E5 100%)", // Gradient background
               color: "white",
               fontWeight: "1rem",
               fontSize: "1rem",
@@ -203,10 +263,12 @@ const ChangePassword = () => {
               transition: "all 0.3s ease-in-out",
               "&:hover": {
                 boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.2)",
-                backgroundColor: "primary.dark",
+                backgroundImage:
+                  "linear-gradient(90deg, #2196F3 0%, #1565C0 100%)", // Darker gradient on hover
                 transform: "translateY(-2px)",
               },
               textTransform: "capitalize",
+              marginTop: 4,
             }}
           >
             {loading ? <CircularProgress size={24} /> : "Change Password"}

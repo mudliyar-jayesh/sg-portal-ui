@@ -4,7 +4,7 @@ import React from "react";
 // import MapUsersToTenant from "./map-users-tenant";
 // import UpdateTenant from "./update-tenant";
 // import MapUserToTenant from "./mapping-tenant";
-// import MapUsersToTenant from "./map-users-tenant";
+import MapUsersToTenant from "./map-users-tenant";
 // import DeleteUserTenantMapping from "./delete-tenant-mapping";
 // import CreateTenant from "./create-tenant";
 // import TenantList from "./tenant-list";
@@ -14,7 +14,7 @@ function page() {
       {/* <CreateTenant></CreateTenant> */}
       {/* <TenantList></TenantList> */}
       {/* <DeleteUserTenantMapping /> */}
-      {/* <MapUsersToTenant /> */}
+      <MapUsersToTenant />
       {/* <MapUsersToTenant /> */}
     </div>
   );

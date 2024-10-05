@@ -8,8 +8,10 @@ import {
   Snackbar,
   Alert,
   CircularProgress,
+  Stack,
 } from "@mui/material";
 import { createTenant, Tenant } from "../api/tenant";
+import { inspiredPalette } from "../ui/theme";
 
 const CreateTenant = () => {
   const [tenantData, setTenantData] = useState<Tenant>({
@@ -53,15 +55,21 @@ const CreateTenant = () => {
   };
 
   return (
-    <div className=" min-h-screen flex justify-center items-center bg-gray-100 p-[8.5px] md:p-0 overflow-hidden">
-      <div className="max-w-lg md:w-11/12 mx-auto scroll-m-0 justify-center items-center drop-shadow-lg  p-4 bg-white rounded-xl hover:-translate-y-1 duration-200 hover:rounded-3xl hover:drop-shadow-2xl">
-        <Typography
-          variant="h4"
-          className="font-medium mt-3 flex justify-center "
-          gutterBottom
-        >
-          Create Tenant
-        </Typography>
+    <div className=" min-h-screen flex justify-center pl-4 pr-4 pb-5 items-center bg-gradient-to-t from-white to-[#9dcce0] p-[8.5px] md:p-0 overflow-hidden">
+      <div className="max-w-lg md:w-10/12 mx-auto scroll-m-0 justify-center items-center drop-shadow-lg pb-6 pr-6 pl-6 bg-gradient-to-t from-white to-[#c2eff5] rounded-xl hover:-translate-y-1 duration-200 hover:rounded-3xl hover:drop-shadow-2xl">
+        <Stack alignItems={"center"} gap={0.2} mt={1}>
+          <Typography
+            sx={{
+              fontSize: { xs: "1.5rem", sm: "1.7rem" },
+              fontWeight: 405,
+              marginBottom: 1.5,
+              marginTop: 5,
+            }}
+            color={inspiredPalette.darker}
+          >
+            Create Tenant
+          </Typography>
+        </Stack>
 
         <TextField
           label="Company GUID"
@@ -70,6 +78,11 @@ const CreateTenant = () => {
           onChange={handleChange}
           fullWidth
           margin="normal"
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              borderRadius: "18px",
+            },
+          }}
         />
         <TextField
           label="Company Name"
@@ -78,6 +91,11 @@ const CreateTenant = () => {
           onChange={handleChange}
           fullWidth
           margin="normal"
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              borderRadius: "18px",
+            },
+          }}
         />
         <TextField
           label="Host"
@@ -86,6 +104,11 @@ const CreateTenant = () => {
           onChange={handleChange}
           fullWidth
           margin="normal"
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              borderRadius: "18px",
+            },
+          }}
         />
         <TextField
           label="BM/RM Port"
@@ -95,6 +118,11 @@ const CreateTenant = () => {
           fullWidth
           margin="normal"
           type="number"
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              borderRadius: "18px",
+            },
+          }}
         />
         <TextField
           label="SG Biz Port"
@@ -104,6 +132,11 @@ const CreateTenant = () => {
           fullWidth
           margin="normal"
           type="number"
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              borderRadius: "18px",
+            },
+          }}
         />
         <TextField
           label="Tally Sync Port"
@@ -113,6 +146,11 @@ const CreateTenant = () => {
           fullWidth
           margin="normal"
           type="number"
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              borderRadius: "18px",
+            },
+          }}
         />
         <div className="justify-center flex">
           <Button
@@ -128,9 +166,10 @@ const CreateTenant = () => {
                 xs: "8px 12px",
                 sm: "10px 16px",
               },
-              width: { xs: "90%", md: "100%" },
+              width: { xs: "70%", md: "80%" },
               borderRadius: "12px",
-              backgroundColor: "primary.main",
+              backgroundImage:
+                "linear-gradient(90deg, #42A5F5 0%, #1E88E5 100%)", // Gradient background
               color: "white",
               fontWeight: "1rem",
               fontSize: "1rem",
@@ -138,10 +177,12 @@ const CreateTenant = () => {
               transition: "all 0.3s ease-in-out",
               "&:hover": {
                 boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.2)",
-                backgroundColor: "primary.dark",
+                backgroundImage:
+                  "linear-gradient(90deg, #2196F3 0%, #1565C0 100%)", // Darker gradient on hover
                 transform: "translateY(-2px)",
               },
               textTransform: "capitalize",
+              marginTop: 4,
             }}
           >
             {loading ? <CircularProgress size={24} /> : "Create Tenant"}

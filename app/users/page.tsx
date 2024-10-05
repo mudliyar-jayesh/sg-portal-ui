@@ -3,7 +3,7 @@
 import React from "react";
 // import Profile from "./profile";
 // import Register from "./register";
-import Login from "./login";
+// import Login from "./login";
 // import ChangePassword from "./change-password";
 
 function page() {
@@ -11,7 +11,7 @@ function page() {
     <div>
       {/* <ChangePassword></ChangePassword> */}
       {/* <Register></Register> */}
-      <Login></Login>
+      {/* <Login></Login> */}
       {/* <Profile></Profile> */}
     </div>
   );
