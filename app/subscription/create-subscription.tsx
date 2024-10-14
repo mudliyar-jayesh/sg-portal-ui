@@ -92,14 +92,7 @@ const CreateSubscriptionPage: React.FC = () => {
               disabled={loading}
               sx={{
                 "& .MuiOutlinedInput-root": {
-                  borderRadius: "18px", // Custom border radius
-                  boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)", // Default shadow
-
-                  transition: "all 0.3s ease-in-out", // Smooth transition for hover effect
-                  "&:hover": {
-                    boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.2)", // Stronger shadow on hover
-                    backgroundColor: "rgba(255, 255, 255, 0.8)", // Slightly less transparency on hover
-                  },
+                  borderRadius: "18px",
                 },
               }}
               slotProps={{
@@ -121,14 +114,7 @@ const CreateSubscriptionPage: React.FC = () => {
               disabled={loading}
               sx={{
                 "& .MuiOutlinedInput-root": {
-                  borderRadius: "18px", // Custom border radius
-                  boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)", // Default shadow
-
-                  transition: "all 0.3s ease-in-out", // Smooth transition for hover effect
-                  "&:hover": {
-                    boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.2)", // Stronger shadow on hover
-                    backgroundColor: "rgba(255, 255, 255, 0.8)", // Slightly less transparency on hover
-                  },
+                  borderRadius: "18px",
                 },
               }}
               slotProps={{
